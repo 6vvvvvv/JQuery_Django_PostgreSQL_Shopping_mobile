@@ -1,0 +1,45 @@
+{% extends 'user/base_user.html' %} {% load static %} 
+{% block EXTJS %}
+{{block.super }}
+<script
+  type="text/javascript"
+  src="{% static 'axfapp/user/js/user_login.js' %}"
+></script>
+{% endblock %} {% block content %}
+
+<div id="login" class="container">
+  <div id="return-login"><a href="{% url 'axf:home' %}">Back to home</a></div>
+
+  <div id="box">
+    <form action="{% url 'axf:login' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <p>Account</p>
+        {{form.username}}
+        <br />
+        {% if error.username.0 %}
+        <span>{{error.username.0}}</span>
+        {% endif %}
+      </div>
+
+      <div class="input-group">
+        <p>Password</p>
+        {{form.passwd}}
+        <br />
+        {% if error.passwd.0 %}
+        <span>{{error.passwd.0}}</span>
+        {% endif %}
+      </div>
+      <div id="submit-login">
+        <input type="submit" value="submit" />
+      </div>
+      <div id="direct-to-register">
+        <a href="{% url 'axf:register' %}">
+          <span class="ahaa"><p>Still don't have an account?</p></span></a
+        >
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

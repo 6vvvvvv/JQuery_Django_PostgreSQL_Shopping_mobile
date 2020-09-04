@@ -1,0 +1,97 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block extCSS %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axfapp/market/market.css' %}">
+{% endblock %}
+
+{% block EXTJS %}
+    <script type="text/javascript" src="{% static 'axfapp/market/js/market.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div id="market">
+        <aside>
+            <menu>
+                <ul>
+                    {% for item in leftsidebar %}
+                        <li>
+                            <span class="yellowSlide">
+
+                            </span>
+                            {% comment %} cid important!!!!!!!!!!!!!!!!!!!!! {% endcomment %}
+                            <a href="{% url 'axf:marketparams' item.typeid 0 0 %}">{{item.typename}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </menu>
+        </aside>
+
+        <section>
+            <nav>
+                <ul>
+                    <li id="all_types">
+                        <span>Type<span id="all_type_logo" class="glyphicon glyphicon-chevron-down"></span></span>
+                    </li>
+                    <li id="sort_rule">
+                        <span>Sort<span id="sort_rule_logo" class="glyphicon glyphicon-chevron-down"></span></span>
+                    </li>
+                </ul>
+            </nav>
+
+            <menu>
+                <ul>
+                    {% for item in productList %}
+                      <li>
+                        <a href="#">
+                            <img src="{{item.productimg}}" alt="{{item.id}}">
+                            <article class="shoppingInfo">
+                                <h6>{{item.productname}}</h6>
+                                <p class="detailTag">
+                                    <span>Hot</span>
+                                    <span>{{item.onefree}}</span>
+                                </p>
+                                <span class="unit">{{item.specifics}}</span>
+                                <p class="price">
+                                    <span>${{item.price}}</span><s><span>${{item.originprice}}</span></s>
+                                </p>
+                            </article>
+                        </a>
+                        
+                        <section>
+                            <button ga="{{item.productid}}" class="subShopping">-</button>
+                            <span id="{{item.productid}}">{{item.num|default:0}}</span>
+                            <button ga="{{item.productid}}" class="addShopping">+</button>
+                        </section>
+                      </li>
+                    {% endfor %}
+                </ul>
+
+                <div id="all_types_container">
+                    <div>
+                            {% for item in childList %}
+                                <a href="{% url 'axf:marketparams' item.parentId item.childId 0 %}"><span>{{item.childName}}</span></a>
+                            {% endfor %}
+                    </div>
+                </div>
+    
+                <div id="sort_container">
+                    <div>
+                    {% comment %} cateid cid not {{cateid}} {{cid}}{% endcomment %}
+                    <a href="{% url 'axf:marketparams' cateid cid 0 %}" class="sorta"><span>Overall</span></a>
+                    <a href="{% url 'axf:marketparams' cateid cid 1 %}" class="sorta"><span>Sold</span></a>
+                    <a href="{% url 'axf:marketparams' cateid cid 2 %}" class="sorta"><span>Lowest Price</span></a>
+                    <a href="{% url 'axf:marketparams' cateid cid 3 %}" class="sorta"><span>Highest Price</span></a>
+                    </div>        
+                </div>
+    
+
+
+
+            </menu>
+        </section>
+    </div>
+   
+
+{% endblock %}

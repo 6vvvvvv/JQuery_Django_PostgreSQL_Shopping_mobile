@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extCSS %}
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+{% endblock %}
+
+{% block header %}
+
+    <header></header>
+
+{% endblock %}
+
+{% block footer %}
+
+    <footer>
+
+        <a href="{% url 'axf:home' %}" class="home">
+
+            <dl>
+
+                <dt>
+                    <span></span>
+                </dt>
+                <dd>Home</dd>
+
+            </dl>
+
+        </a>
+        {% comment %} <a href="/axf/market/103549/104503/" class="market"> {% endcomment %}
+        <a href="{% url 'axf:market' %}" class="market">
+            <dl>
+
+                <dt>
+                    <span></span>
+                </dt>
+                <dd>Market</dd>
+
+            </dl>
+
+        </a>
+        <a href="{% url 'axf:cart' %}" class="cart">
+
+            <dl>
+
+                <dt>
+                    <span></span>
+                </dt>
+                <dd>Cart</dd>
+
+            </dl>
+
+        </a>
+        <a href="{% url 'axf:mine' %}" class="mine">
+
+            <dl>
+
+                <dt>
+                    <span></span>
+                </dt>
+                <dd>My Profile</dd>
+
+            </dl>
+
+        </a>
+
+    </footer>
+
+{% endblock %}

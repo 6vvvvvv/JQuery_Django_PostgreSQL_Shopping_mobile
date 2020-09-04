@@ -1,0 +1,85 @@
+{% extends 'base_main.html' %} {% load static %} 
+{% block extCSS %} 
+{{block.super }}
+<link rel="stylesheet" href="{% static 'axfapp/cart/cart.css' %}" />
+{% endblock %} {% block EXTJS %} {{ block.super }}
+<script
+  type="text/javascript"
+  src="{% static 'axfapp/cart/js/cart.js' %}"
+></script>
+{% endblock %} {% block content %}
+
+<div id="cart">
+  <div class="full">
+    <section class="clear">
+      <ul>
+        <li><i class="fas fa-user-circle"></i> : {{user.userName}}</li>
+        <li><i class="fas fa-phone"></i> : {{user.userPhone}}</li>
+        <li>
+          <i class="fas fa-map-marked-alt"></i> : {{user.userAddress}}
+          
+        </li>
+      </ul>
+      
+
+      <section class="bill">
+        <p>Flash</p>
+
+        <a href="#"><i class="fas fa-plus"></i> Add-on Item</a>
+
+        <p>50% Off</p>
+      </section>
+
+      <section class="delivery">
+        <i class="fas fa-clock"></i> <span>ETA</span> :
+        <span>1 hour</span>
+        <a href="#"><p>Specify Your Time&gt;&gt;</p></a>
+      </section>
+
+      <menu>
+        <ul>
+          {% for item in carlist %}
+          <li class="menuList" id="li{{item.productid}}">
+            <div class="confirm">
+              <span class="ischose" goodid="{{item.productid}}">
+                <span id="a{{item.productid}}">
+                  {% if item.isChose %} √ {% endif %}
+                </span>
+              </span>
+            </div>
+            <a href="#">
+              <img src="{{ item.productimg}}" alt="productimg" />
+              <p>{{ item.productname }}</p>
+              <span id="price{{item.productid}}">${{ item.productprice }}</span>
+            </a>
+            <section>
+              {% comment %} {% csrf_token %} {% endcomment %}
+              <button class="subShopping" ga="{{item.productid}}">-</button>
+              <span id="{{item.productid}}">{{item.productnum}}</span>
+              <button class="addShopping" ga="{{item.productid}}">+</button>
+            </section>
+          </li>
+          {% endfor %}
+
+          <li class="payTheBill">
+            <div class="confirm">
+              <span>
+                <span> {% if trueFlag %} √ {% endif %} </span>
+              </span>
+            </div>
+
+            <p>
+              <span>Choose All</span>
+
+              <span id="price_total">{{ price_total }}</span>
+            </p>
+
+            <span><a href="#" id="ok"><i class="fas fa-calculator"></i></a></span>
+          </li>
+        </ul>
+      </menu>
+    </section>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block extCSS %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axfapp/mine/mine.css' %}">
+{% endblock %}
+
+{% block EXTJS %}
+{{ block.super }}
+    <script type="text/javascript" src="{% static 'axfapp/mine/js/mine.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="mine">
+        <div class="fixed">
+                <!-- if logged in show profile -->
+            {% if user.id %}
+                     {% comment %} <img src="{{ user.userIcon }}" alt="icon">     {% endcomment %}
+                     <img src="/axf/static/uploads/icons/liuwei.jpg" alt=""> 
+                    
+            {% else %}
+                    <span class="glyphicon glyphicon-user"></span>
+            {% endif %}
+
+            {% if user.id %}
+            {% comment %} add {% endcomment %}
+                    <p>Welcome {{ user.userName }}</p>
+
+            {% else %}
+                    <!-- redirect to login page if not log in -->
+                    <a href="#">Please login</a>
+            {% endif %}
+
+
+              <!--if not login show register-->
+            <p><span class="glyphicon glyphicon-fire"></span><span>Level</span></p>
+
+
+        </div>
+
+        <div class="mine">
+
+            <p>My order<a href="#">More&gt&gt</a></p>
+
+                <div id="nav">
+                    <ul>
+                        <a href="#">
+                            <li>
+                                <dl>
+                                    <dt><span id="wait_pay_list" class="glyphicon glyphicon-usd"></span>
+                                        <span class="badge">
+                                                {{ wait_pay }}
+                                        </span></dt>
+                                    <dd>Unpaid</dd>
+                                </dl>
+
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <dl>
+                                    <dt><span id="order_payed_list" class="glyphicon glyphicon-envelope"></span>
+                                        <span class="badge">
+                                            {{ payed }}
+                                        </span></dt>
+                                    <dd>Unreceived</dd>
+                                </dl>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <dl>
+                                    <dt><span class="glyphicon glyphicon-pencil"></span></dt>
+                                    <dd>Comment</dd>
+                                </dl>
+                            </li>
+                        </a> 
+                        <a href="#"> 
+                            <li>
+                                <dl>
+                                    <dt><span class="glyphicon glyphicon-retweet"></span></dt>
+                                    <dd>Aftersale</dd>
+                                </dl>
+
+                            </li>
+                        </a>  
+                    </ul>
+                </div>
+
+            <menu>
+                <ul>
+                    <a href="#"> 
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-bullhorn"></span></dt>
+                                <dd><span>Point</span></dd>
+                            </dl>
+                        </li>
+                    </a>
+
+                    <a href="#"> 
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                                <dd><span>Coupon</span></dd>
+                            </dl>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-import"></span></dt>
+                                <dd><span>Address</span></dd>
+                            </dl>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-phone-alt"></span></dt>
+                                <dd><span>Feedback</span></dd>
+                            </dl>
+                        </li>
+                    </a>             
+                </ul>
+            </menu>
+
+            <!--if logged in or register show log out button-->
+            <p class="logout">
+                    <a href="{% url 'axf:quit' %}">Quit</a>
+            </p>
+
+            {% comment %} {% if user.id %}
+                
+            {% endif %} {% endcomment %}
+        
+           
+
+                
+            
+        
+        </div>
+    </div>
+{% endblock %}
+
+

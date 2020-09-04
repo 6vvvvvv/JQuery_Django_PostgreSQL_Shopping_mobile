@@ -1,0 +1,98 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block extCSS %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axfapp/home/home.css' %}">
+{% endblock %}
+
+{% block EXTJS %}
+    <script type="text/javascript" src="{% static 'axfapp/home/js/home.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="home">
+        
+        <div class="swiper-container" id="topSwiper">
+            <div class="swiper-wrapper">
+               
+                {% for mainwheel in mainwheels %}
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="{{mainwheel.img}}" alt="{{ manwheels.name }}">
+                        </a>
+                    </div>
+                  {% endfor %}
+                
+            </div>
+            
+            <div class="swiper-pagination"></div>
+
+        </div>
+        
+
+        <div class="topMenu">
+            <nav>
+                <ul>
+                   
+                    {% for mainnav in mainnavs %}
+                        <li>
+                            <a href="#"><img src="{{ mainnav.img}}" alt="{{ mainnavs.name }}"></a>
+                        </li>
+                      {% endfor %}
+                   
+
+                </ul>
+            </nav>
+        </div>
+
+      
+        
+        <div id="swiperMenu" class="swiper-container">
+
+            <ul class="swiper-wrapper">
+                
+                   {% for mustbuy in mustbuys %}
+                    <li class="swiper-slide">
+                        <img src="{{ mustbuy.img}}" alt="{{ mustbuys.name }}">
+                    </li>
+                  {% endfor %}
+               
+
+            </ul>
+
+        </div>
+
+
+  
+
+        <div class="mainInfo">
+          
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2">
+                        <h3><a href="#">More&gt&gt;</a></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row ">
+                    {% for maingood in maingoods %}
+                        <a href="#"><div class="col-sm-3"><img src="{{maingood.img}}" alt="{{maingood.name}}"></div></a>
+                    {% endfor %}
+                </div>
+                <div class="row" id="row-customized">
+                    {% for maingood in maingoods1 %}
+                        <a href="#"><div class="col-sm-3"><img src="{{maingood.img}}" alt="{{maingood.name}}"></div></a>
+                    {% endfor %}
+                </div>
+            </div>
+           
+
+
+        </div>
+    </div>
+
+{% endblock %}

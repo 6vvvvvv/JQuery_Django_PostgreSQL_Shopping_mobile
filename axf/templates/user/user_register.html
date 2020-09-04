@@ -1,0 +1,133 @@
+{% extends 'user/base_user.html' %} {% load static %} 
+{% block EXTJS %} 
+{{block.super }}
+<script
+  type="text/javascript"
+  src="{% static 'axfapp/user/js/user_register.js' %}"
+></script>
+{% endblock %} {% block content %}
+
+<div id="register" class="container">
+  <div id="return-register">
+    <a href="{% url 'axf:home' %}">Back to home</a>
+  </div>
+  
+  <div id="box">
+    <form
+      class="form-horizontal"
+      action="{% url 'axf:register' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="input-group">
+        <span class="input-group-addon">Account</span>
+        <input
+          id="account"
+          type="text"
+          class="form-control"
+          placeholder="It should consist of 6-20 characters"
+          aria-describedby="basic-addon1"
+          name="userAccount"
+        />
+      </div>
+      <span id="accounterr" class="error">Input error</span>
+      <span id="checkerr" class="error"
+        >It is occupied, please enter again</span
+      >
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Password</span>
+        <input
+          id="passwd1"
+          type="password"
+          class="form-control"
+          placeholder="It should consist of 6-20 characters"
+          aria-describedby="basic-addon1"
+          name="userPasswd"
+        />
+      </div>
+      <span id="pass1err" class="error">Please enter the password again</span>
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Verify</span>
+        <input
+          id="passwd2"
+          type="password"
+          class="form-control"
+          placeholder="It should consist of 6-20 characters"
+          aria-describedby="basic-addon1"
+          name="userPasswd"
+        />
+      </div>
+      <span id="pass2err" class="error">Passwords are not identical</span>
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Nickname</span>
+        <input
+          required="required"
+          type="text"
+          class="form-control"
+          aria-describedby="basic-addon1"
+          name="userName"
+        />
+      </div>
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Phone</span>
+        <input
+          required="required"
+          type="text"
+          class="form-control"
+          aria-describedby="basic-addon1"
+          name="userPhone"
+        />
+      </div>
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Address</span>
+        <input
+          required="required"
+          type="text"
+          class="form-control"
+          aria-describedby="basic-addon1"
+          name="userAddr"
+        />
+      </div>
+
+      <br />
+
+      <div class="input-group">
+        <span class="input-group-addon">Profile Img</span>
+        <input
+          required="required"
+          type="file"
+          class="form-control custom-file-input"
+          aria-describedby="basic-addon1"
+          name="useIcon"
+        />
+      </div>
+
+      <br />
+
+      <div class="input-group btn-submit-register">
+        <input id="submit-register" type="submit" value="Register" />
+      </div>
+      <div id="direct-to-login">
+        <a href="{% url 'axf:login' %}"><span  class="ahaa"> <p>Already have an account?</p></span></a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
