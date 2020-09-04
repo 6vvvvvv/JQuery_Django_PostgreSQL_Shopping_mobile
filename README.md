@@ -74,4 +74,3 @@
 ![image](https://github.com/6vvvvvv/jQuery_django_postgresql_mobileshopping/blob/master/img/23.jpg)
 
 
-## More is coming!
