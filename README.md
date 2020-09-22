@@ -1,6 +1,6 @@
 # JQuery_Django_PostgreSQL_Shopping_mobile
  
- ## Must known: 1.Make sure you are under vituralenvironment(pipenv shell) when run Backend code. 
+ ## Must known: 1.Make sure you are under vitural environment(pipenv shell) when run Backend code. 
  ##             2.Make sure your database is good to go, postgresql recommended.
  ##             3.This project is still under construction but pricipal functions are at your service
  
